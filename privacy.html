@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nazara — Privacy Policy</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.65; color: #161823; max-width: 860px; margin: 0 auto; padding: 32px 20px; background: #ffffff; }
+    h1, h2 { color: #0f172a; }
+    h1 { font-size: 1.9rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 12px; }
+    h2 { font-size: 1.25rem; margin-top: 28px; }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 8px; }
+    .meta { color: #475569; font-size: 0.95rem; margin-bottom: 24px; }
+    code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  </style>
+</head>
+<body>
+  <h1>Nazara Privacy Policy</h1>
+  <p class="meta"><strong>Application:</strong> Nazara (<code>com.aistudio.nazara.vkrtxz</code>)<br />
+  <strong>Effective Date:</strong> November 24, 2026<br />
+  <strong>Contact / Admin Support:</strong> <a href="mailto:aloneroot00@gmail.com">aloneroot00@gmail.com</a></p>
+
+  <p>This Privacy Policy explains how <strong>Nazara</strong> collects, processes, encrypts, stores, and protects your information when you use our mobile application and connected services. Before creating an account or uploading media, you must review and explicitly accept this Privacy Policy and our Terms &amp; Conditions.</p>
+
+  <h2>1. Information We Collect</h2>
+  <ul>
+    <li><strong>Authentication &amp; Profile Data (Google Sign-In / Phone / Email):</strong> When you sign in using Google Sign-In (Gmail via Jetpack Credential Manager) or verified phone/email credentials, we receive your Firebase User ID (UID), display name, handle, optional bio, avatar URL, and email address to create and manage your profile in Cloud Firestore (<code>users</code> and <code>public_profiles</code>).</li>
+    <li><strong>User-Generated Media &amp; Social Interactions:</strong> Videos, photos, stories (capped at 60 seconds and 50 MB), compressed JPEG thumbnails, captions, titles, hashtags, music track labels, comments, likes, bookmarks, follow relationships, activity logs, and moderation reports stored in Firebase Cloud Storage and Cloud Firestore.</li>
+    <li><strong>Blue Tick Verification Data:</strong> When you submit the "Apply for Blue Tick" form, we store your full name, username/handle, category, verification reason, optional proof URL, and optional uploaded identity/verification image in Firestore (<code>verification_requests</code>) and Firebase Storage (<code>verification_docs</code>) strictly for Admin Panel review.</li>
+    <li><strong>Diamonds, Gifts, Custom Ads &amp; Creator PKR Payouts:</strong> We record your virtual Diamond wallet balances (<code>diamonds</code>, <code>earnedDiamonds</code>), immutable ledger entries (<code>transactions</code>), Video Boost campaigns, In-App Custom Ads (<code>custom_ads</code>), and payout requests (<code>payout_requests</code> containing payout method—JazzCash, EasyPaisa, or Bank Transfer—Account Title, Account Number/IBAN, Diamonds deducted, and PKR equivalent at 1 Diamond = 5 PKR). Payment processing for Diamond bundle purchases is handled by Google Play Billing; Nazara does not store raw credit/debit card numbers.</li>
+    <li><strong>Push Notification Tokens:</strong> When notifications are enabled, we store your Firebase Cloud Messaging device registration token (<code>fcmToken</code>) on your <code>users</code> document to deliver alerts for likes, comments, new followers, virtual gifts, Video Boost updates, upload completion, and payout decisions.</li>
+  </ul>
+
+  <h2>2. End-to-End Encrypted Chats, Vault Storage &amp; Local Cache</h2>
+  <ul>
+    <li><strong>AES-256-GCM Encryption (<code>NazaraCrypto</code>):</strong> Direct messages, call-initiation payloads, and sensitive creator profile vault fields are encrypted client-side using authenticated AES-256-GCM encryption (<code>ENCv1:...</code> envelopes with PBKDF2-HMAC-SHA256 key derivation) before being written to Cloud Firestore (<code>chats</code>, <code>messages</code>, and <code>users.encryptedProfileBlob</code>). Plaintext direct message fields are rejected by Firestore Security Rules.</li>
+    <li><strong>Local Caching &amp; Preferences:</strong> User preferences and local UI toggles are stored via Jetpack DataStore. Watched and preloaded short videos are cached locally in an LRU Media3 <code>SimpleCache</code> (up to 250 MB), which you can clear at any time from <em>Settings &rarr; Free up space</em>.</li>
+  </ul>
+
+  <h2>3. Android Device Permissions &amp; Zero-Permission Media Access</h2>
+  <ul>
+    <li><code>android.permission.CAMERA</code> (Optional hardware, requested at runtime): Used solely when you open the in-app CameraX studio to record clips or initiate video calls.</li>
+    <li><code>android.permission.RECORD_AUDIO</code> (Requested at runtime): Used solely to capture audio during video recording and transmit voice during audio/video calls.</li>
+    <li><code>android.permission.POST_NOTIFICATIONS</code> (Android 13+, requested at runtime): Used to display FCM push notifications and upload progress notifications.</li>
+    <li><code>android.permission.INTERNET</code> &amp; <code>ACCESS_NETWORK_STATE</code> (Install-time): Required for streaming videos, syncing Cloud Firestore, uploading to Firebase Storage, and verifying purchases.</li>
+    <li><strong>Zero-Permission Photo Picker:</strong> Nazara uses Android's privacy-safe <code>PickVisualMedia</code> Photo Picker for gallery uploads, avatars, stories, and Blue Tick proof images. Nazara <strong>never</strong> requests <code>READ_EXTERNAL_STORAGE</code>, <code>READ_MEDIA_IMAGES</code>, <code>READ_MEDIA_VIDEO</code>, <code>ACCESS_FINE_LOCATION</code>, <code>ACCESS_COARSE_LOCATION</code>, or <code>READ_CONTACTS</code>.</li>
+  </ul>
+
+  <h2>4. Third-Party Services, Advertising &amp; Security</h2>
+  <ul>
+    <li><strong>Firebase Services (Google LLC):</strong> We use Firebase Authentication, Cloud Firestore, Firebase Storage, Firebase Cloud Messaging (FCM), Firebase Analytics, and Firebase Crashlytics (for crash diagnostics and stability monitoring).</li>
+    <li><strong>Firebase App Check:</strong> Nazara enforces Firebase App Check (Google Play Integrity API in release builds) to protect Firestore, Storage, and backend endpoints from automated bots, spoofing, and unauthorized tampering.</li>
+    <li><strong>Google AdMob &amp; In-App Ads:</strong> Nazara displays Google AdMob Native and Interstitial ads and Diamond-sponsored Custom Ads in the feed. Users who activate <strong>Remove Ads</strong> (using Diamonds only) have all feed AdMob placements and sponsored ads hidden for the active subscription period.</li>
+  </ul>
+
+  <h2>5. Data Retention, Security Controls &amp; User Rights</h2>
+  <ul>
+    <li><strong>Access Control:</strong> Cloud Firestore and Firebase Storage enforce strict user-ownership rules, participant isolation for encrypted chats/calls, and verified admin-only moderation/payout/verification approvals.</li>
+    <li><strong>Visibility &amp; Safety Controls:</strong> You can publish clips as Private (stored strictly in your private subcollection), manage who can comment or message you, block creators, mark clips as "Not Interested", clear your Media3 local cache, or delete your own public/private videos and comments.</li>
+    <li><strong>Account &amp; Data Deletion:</strong> You may delete uploaded content inside the app or request account and personal data deletion by contacting <a href="mailto:aloneroot00@gmail.com">aloneroot00@gmail.com</a>. Note that immutable financial audit records (<code>transactions</code> and processed <code>payout_requests</code>) and safety/abuse enforcement logs may be retained where required for fraud prevention or legal compliance.</li>
+  </ul>
+</body>
+</html>
